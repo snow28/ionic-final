@@ -1,0 +1,33 @@
+page-home {
+  position: relative;
+  text-align:center;
+  height: 100%;
+  h1{
+    font-family: 'Josefin Sans', sans-serif;
+  }
+  .logo{
+    position: fixed;
+    left : 1em;
+  }
+  .ion-content{
+    background-image: url("../../assets/imgs/home__background2.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    max-height: 100%;
+  }
+  .authentication{
+    margin: auto;
+    min-width: 100%;
+  }
+  .button{
+    min-width: 250px;
+  }
+  .bottom-auth{
+    width: 100%;
+    position: absolute;
+    bottom: 0px;
+  }
+
+}
+

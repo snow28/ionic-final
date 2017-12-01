@@ -1,0 +1,41 @@
+<ion-content padding class="ion-content">
+  <h1>The Penguig</h1>
+
+
+  <ion-card *ngIf="userAccountInfo.loggedin">
+    <img src="{{userAccountInfo.profilePicture}}"/>
+    <ion-card-content>
+      <ion-card-title>
+        {{userAccountInfo.name}}
+      </ion-card-title>
+      <p>
+        {{userAccountInfo.email}}
+      </p>
+    </ion-card-content>
+  </ion-card>
+
+
+
+
+            <!----------------         AUTHENTICATION  Buttons            ----------->
+  <button ion-button (click)="login('facebook')" color="light" class="button" *ngIf="!userAccountInfo.loggedin">
+    <ion-icon name="logo-facebook" class="logo"></ion-icon>
+    Login With Facebook
+  </button>
+  <button ion-button (click)="login('google')" color="light" class="button" *ngIf="!userAccountInfo.loggedin">
+    <ion-icon name="logo-google" class="logo"></ion-icon>
+    Login With Google
+  </button>
+  <button ion-button (click)="logout()" color="light" class="button" *ngIf="userAccountInfo.loggedin">Logout</button>
+
+  <div class="bottom-auth">
+    <button ion-button (click)="login('twitter')" color="light" class="button" *ngIf="!userAccountInfo.loggedin">
+      <ion-icon name="logo-twitter" class="logo"></ion-icon>
+      Login With Twitter
+    </button>
+    <button ion-button (click)="login('github')" color="light" class="button" *ngIf="!userAccountInfo.loggedin">
+      <ion-icon name="logo-github" class="logo"></ion-icon>
+      Login With GitHub
+    </button>
+  </div>
+</ion-content>
