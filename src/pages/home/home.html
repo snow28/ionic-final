@@ -2,18 +2,13 @@
                        <!--           Side MENU            -->
 
 <ion-menu [content]="mycontent">
-  <ion-header>
-    <ion-toolbar class="align-center">
-      <ion-title>Menu</ion-title>
-    </ion-toolbar>
-  </ion-header>
   <div class="side-menu-userInfo">
     <img src="{{userAccountInfo.profilePicture}}"/>
     <p>{{userAccountInfo.name}}</p>
   </div>
 
   <ion-list class="menu-list">
-    <button ion-item menuClose (click)="openComponent('home')">
+    <button ion-item menuClose (click)="openComponent('main-home')">
       Home
     </button>
     <button ion-item menuClose>
@@ -24,9 +19,6 @@
     </button>
     <button ion-item menuClose >
       Music
-    </button>
-    <button ion-item menuClose>
-      Close Menu
     </button>
     <button ion-button menuClose full color="danger" (click)="logout()"  class="button">Logout</button>
   </ion-list>
@@ -56,6 +48,7 @@
                         <!--     Main part loggedin        -->
 
   <users-online *ngIf="currentComponent == 'users-online'"></users-online>
+  <main-home *ngIf="currentComponent == 'main-home'"></main-home>
 
 
   </div>

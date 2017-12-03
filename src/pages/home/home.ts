@@ -3,7 +3,6 @@ import { NavController } from 'ionic-angular';
 import { AngularFireDatabase } from 'angularfire2/database';
 import {AngularFireAuth} from 'angularfire2/auth'
 import firebase from 'firebase';
-import {MainPage} from "../main/main";
 
 
 @Component({
@@ -12,18 +11,17 @@ import {MainPage} from "../main/main";
 })
 export class HomePage {
 
-  currentComponent = 'users-online';
+  currentComponent = 'main-home';
   subscription;
-  nextID = [];
   usersOnline=[];
-  tmp;
 
   openComponent(name){
     this.currentComponent = name;
   }
 
   userAccountInfo = {
-    ID : '' ,
+    incremented : false,
+    ID : {} ,
     name : '',
     profilePicture : '',
     email : '',
@@ -36,21 +34,21 @@ export class HomePage {
       this.usersOnline = data;
       console.log(this.usersOnline);
     })
-    this.subscription = this.db.list("/ID").valueChanges().subscribe(data =>{
-      this.nextID = data;
-      this.userAccountInfo.ID = this.nextID[0];
-      //console.log(parseInt(this.nextID[0]));
-      this.db.object("/ID").update({0 : parseInt(this.nextID[0])+1});
-    })
-
-  }
-  openPage(){
-    this.navCtrl.push(MainPage);
+    this.db.list("/ID").valueChanges().subscribe(data =>{
+      this.userAccountInfo.ID = data[0];
+      console.log("->>>" + data[0]);
+      if(this.userAccountInfo.incremented == false) {
+        this.db.object("/ID").update({0 : parseInt(data[0]) + 1 });
+        this.userAccountInfo.incremented = true;
+      }
+    }
+  )
   }
 
                          //  ---------        AUTHENTICATION     -------------------------
 
   login(authSource) {
+    console.log("User ID" + this.userAccountInfo.ID);
     let signInProvider = null;
     switch (authSource){
       case "facebook":
@@ -95,12 +93,12 @@ export class HomePage {
         this.userAccountInfo.email = res.user.email;
         this.userAccountInfo.profilePicture = res.user.providerData[0].photoURL;
 
-        this.db.list("/usersOnline").push({
+        this.db.createPushId();
+        this.db.list("/usersOnline/" + this.userAccountInfo.ID).push( {
           name : res.user.displayName ,
           email : res.user.email ,
           ID : this.userAccountInfo.ID
         });
-
       })
 
   }
@@ -108,5 +106,6 @@ export class HomePage {
   logout(){
     this.fire.auth.signOut();
     this.userAccountInfo.loggedin = false;
+    this.db.list("/usersOnline/"+this.userAccountInfo.ID).remove();
   }
 }

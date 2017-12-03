@@ -23,18 +23,10 @@ export class UsersOnlineComponent {
   constructor( private db : AngularFireDatabase) {
     this.subscription = this.db.list("/usersOnline").valueChanges().subscribe(data =>{
       this.usersOnline = data;
-      console.log(this.usersOnline);
+      console.log("Users online" + this.usersOnline);
     })
     console.log('Users-online component works!');
     this.text = 'Users online component';
   }
 
-  addInfo(){
-    this.db.list("/usersOnline").push({
-      name: "Dmytro Kachailo",
-      email: "snow28@ukr.net" ,
-      ID : 123123123
-    });
-
-  }
 }

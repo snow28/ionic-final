@@ -17,6 +17,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { MainPage } from '../pages/main/main';
 import { UsersOnlineComponent } from '../components/users-online/users-online';
+import { MainHomeComponent } from '../components/main-home/main-home';
 
 var config = {
   apiKey: "AIzaSyC7qktsZdsGmEIToEPe7UIRkal_Bug6GlY",
@@ -33,7 +34,8 @@ var config = {
     MyApp,
     HomePage,
     MainPage,
-    UsersOnlineComponent
+    UsersOnlineComponent,
+    MainHomeComponent
   ],
   imports: [
     BrowserModule,
