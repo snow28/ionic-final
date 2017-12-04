@@ -93,4 +93,5 @@
     <plugin name="cordova-plugin-buildinfo" spec="^2.0.1" />
     <plugin name="cordova-plugin-inappbrowser" spec="^1.7.2" />
     <plugin name="cordova-plugin-admob-free" spec="^0.12.1" />
+    <plugin name="cordova-sqlite-storage" spec="^2.1.2" />
 </widget>

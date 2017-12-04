@@ -1,8 +1,9 @@
-import { Component , ChangeDetectorRef } from '@angular/core';
-import { NavController  } from 'ionic-angular';
+import { Component , ChangeDetectorRef , Injectable } from '@angular/core';
+import {DateTime, NavController} from 'ionic-angular';
 import { AngularFireDatabase } from 'angularfire2/database';
-import {AngularFireAuth} from 'angularfire2/auth'
+import {AngularFireAuth} from 'angularfire2/auth';
 import firebase from 'firebase';
+import {AddNewsPage} from '../add-news/add-news';
 
 
 @Component({
@@ -29,9 +30,6 @@ export class HomePage {
     loggedin : false
   }
 
-  time;
-
-
 
   constructor(
     public ref : ChangeDetectorRef ,
@@ -39,7 +37,10 @@ export class HomePage {
     public navCtrl: NavController ,
     private db : AngularFireDatabase
   ){
+
   }
+            //  ------------     sending user data to add-news page
+
 
                          //  ---------        AUTHENTICATION     -------------------------
 
@@ -105,7 +106,6 @@ export class HomePage {
           ID : this.userAccountInfo.ID
         });
       })
-
   }
               //Log out function
   logout(){
