@@ -1,22 +1,32 @@
-import { Component } from '@angular/core';
+import { Component , Input} from '@angular/core';
+import { NavController  } from 'ionic-angular';
+import { AddNewsPage } from '../../pages/add-news/add-news';
 
-/**
- * Generated class for the MainHomeComponent component.
- *
- * See https://angular.io/api/core/Component for more info on Angular
- * Components.
- */
 @Component({
   selector: 'main-home',
   templateUrl: 'main-home.html'
 })
 export class MainHomeComponent {
+  userInfo =  {
+    email : '',
+    name : '',
+    profilePicture : ''
+  }
 
-  text: string;
+  constructor(public navCtrl: NavController) {
+    console.log('Hello MainHomeComponent');
+  }
+  //recieving user data from home.ts file
+  @Input()
+  set userAccountInfo(input) {
+    console.log(input);
+    this.userInfo.email = input.email;
+    this.userInfo.name = input.name;
+    this.userInfo.profilePicture = input.profilePicture;
+  }
 
-  constructor() {
-    console.log('Hello MainHomeComponent Component');
-    this.text = 'Hello World';
+  pushTo_addnews(){
+    this.navCtrl.push(AddNewsPage);
   }
 
 }

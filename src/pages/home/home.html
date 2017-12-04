@@ -1,10 +1,11 @@
 
-                       <!--           Side MENU            -->
+<!--           Side MENU            -->
 
 <ion-menu [content]="mycontent">
   <div class="side-menu-userInfo">
     <img src="{{userAccountInfo.profilePicture}}"/>
-    <p>{{userAccountInfo.name}}</p>
+    <p class="menu-name">{{userAccountInfo.name}}</p>
+    <p class="menu-email">{{userAccountInfo.email}}</p>
   </div>
 
   <ion-list class="menu-list">
@@ -28,11 +29,11 @@
 
 
 
-<ion-content #mycontent padding class="ion-content" >
+<ion-content #mycontent padding   [class.login-page]="userAccountInfo.loggedin==false" >
 
   <div *ngIf="userAccountInfo.loggedin" class="div-loggedin">
 
-                    <!--       HEADER              -->
+    <!--       HEADER              -->
 
     <ion-header>
       <ion-navbar>
@@ -45,23 +46,28 @@
       </ion-navbar>
     </ion-header>
 
-                        <!--     Main part loggedin        -->
+    <!--     Main part loggedin        -->
 
-  <users-online *ngIf="currentComponent == 'users-online'"></users-online>
-  <main-home *ngIf="currentComponent == 'main-home'"></main-home>
+    <users-online *ngIf="currentComponent == 'users-online'"></users-online>
+    <main-home *ngIf="currentComponent == 'main-home'" [userAccountInfo]="userAccountInfo"></main-home>
 
 
   </div>
 
 
-                              <!--       Before Loggedin       -->
+
+
+
+
+
+
+  <!--       Before Loggedin       -->
 
   <div *ngIf="!userAccountInfo.loggedin">
     <h1>The Penguig</h1>
   </div>
 
-            <!----------------         AUTHENTICATION  Buttons            ----------->
-
+  <!----------------         AUTHENTICATION  Buttons            ----------->
   <button ion-button (click)="login('facebook')" color="light" class="button" *ngIf="!userAccountInfo.loggedin">
     <ion-icon name="logo-facebook" class="logo"></ion-icon>
     Login With Facebook
@@ -70,7 +76,6 @@
     <ion-icon name="logo-google" class="logo"></ion-icon>
     Login With Google
   </button>
-
   <div class="bottom-auth">
     <button ion-button (click)="login('twitter')" color="light" class="button" *ngIf="!userAccountInfo.loggedin">
       <ion-icon name="logo-twitter" class="logo"></ion-icon>

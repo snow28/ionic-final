@@ -5,19 +5,27 @@ page-home {
   .side-menu-userInfo{
     padding-bottom: 10px;
     padding-top: 35px;
+    background-color: lightgray;
   }
   .side-menu-userInfo img{
     margin-left: 15px;
-    width: 100px;
-    height: 100px;
-    border-radius: 60px;
+    width: 130px;
+    height: 130px;
+    border-radius: 130px;
 
   }
-  .side-menu-userInfo p{
+  .menu-name{
     font-size: 20px;
     font-weight: 500;
     margin: 0;
     line-height: 60px;
+  }
+  .menu-email{
+    position: relative;
+    top:-10px;
+    font-size: 15px;
+    margin: 0;
+    padding: 0;
   }
   h1{
     font-family: 'Josefin Sans', sans-serif;
@@ -26,7 +34,7 @@ page-home {
     position: fixed;
     left : 1em;
   }
-  .ion-content{
+  .login-page{
     background-image: url("../../assets/imgs/home__background2.png");
     background-position: center;
     background-repeat: no-repeat;
@@ -51,7 +59,9 @@ page-home {
   .align-center {
     text-align: center;
   }
-
+  .toolbar-background-md{
+    background-color: white;
+  }
 
 }
 

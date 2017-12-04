@@ -1,5 +1,5 @@
 import { Component , ChangeDetectorRef } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController  } from 'ionic-angular';
 import { AngularFireDatabase } from 'angularfire2/database';
 import {AngularFireAuth} from 'angularfire2/auth'
 import firebase from 'firebase';
@@ -29,25 +29,30 @@ export class HomePage {
     loggedin : false
   }
 
-  constructor( public ref : ChangeDetectorRef , private fire : AngularFireAuth , public navCtrl: NavController , private db : AngularFireDatabase) {
-    this.subscription = this.db.list("/usersOnline").valueChanges().subscribe(data =>{
-      this.usersOnline = data;
-      console.log(this.usersOnline);
-    })
-    this.db.list("/ID").valueChanges().subscribe(data =>{
-      this.userAccountInfo.ID = data[0];
-      console.log("->>>" + data[0]);
-      if(this.userAccountInfo.incremented == false) {
-        this.db.object("/ID").update({0 : parseInt(data[0]) + 1 });
-        this.userAccountInfo.incremented = true;
-      }
-    }
-  )
+  time;
+
+
+
+  constructor(
+    public ref : ChangeDetectorRef ,
+    private fire : AngularFireAuth ,
+    public navCtrl: NavController ,
+    private db : AngularFireDatabase
+  ){
   }
 
                          //  ---------        AUTHENTICATION     -------------------------
 
   login(authSource) {
+    this.db.list("/ID").valueChanges().subscribe(data =>{
+        this.userAccountInfo.ID = data[0];
+        console.log("ID data[0] returned from firebase->>>" + data[0]);
+        if(this.userAccountInfo.incremented == false) {
+          this.db.object("/ID").update({0 : parseInt(data[0]) + 1 });
+          this.userAccountInfo.incremented = true;
+        }
+      }
+    )
     console.log("User ID" + this.userAccountInfo.ID);
     let signInProvider = null;
     switch (authSource){
