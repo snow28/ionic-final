@@ -1,6 +1,6 @@
 import { Component , ChangeDetectorRef , Injectable } from '@angular/core';
 import {DateTime, NavController} from 'ionic-angular';
-import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireDatabase  } from 'angularfire2/database';
 import {AngularFireAuth} from 'angularfire2/auth';
 import firebase from 'firebase';
 import {AddNewsPage} from '../add-news/add-news';
@@ -37,7 +37,6 @@ export class HomePage {
     public navCtrl: NavController ,
     private db : AngularFireDatabase
   ){
-
   }
             //  ------------     sending user data to add-news page
 
@@ -45,6 +44,7 @@ export class HomePage {
                          //  ---------        AUTHENTICATION     -------------------------
 
   login(authSource) {
+
     this.db.list("/ID").valueChanges().subscribe(data =>{
         this.userAccountInfo.ID = data[0];
         console.log("ID data[0] returned from firebase->>>" + data[0]);
@@ -54,7 +54,6 @@ export class HomePage {
         }
       }
     )
-    console.log("User ID" + this.userAccountInfo.ID);
     let signInProvider = null;
     switch (authSource){
       case "facebook":
@@ -92,15 +91,13 @@ export class HomePage {
                               /*          PC Version    */
     this.fire.auth.signInWithPopup(signInProvider)
       .then(res => {
-        console.log("<--FROM " + this.userAccountInfo.loggedinWith + "   --->");
-        console.log(res);
         this.userAccountInfo.loggedin = true;
         this.userAccountInfo.name = res.user.displayName;
         this.userAccountInfo.email = res.user.email;
         this.userAccountInfo.profilePicture = res.user.providerData[0].photoURL;
 
         this.db.createPushId();
-        this.db.list("/usersOnline/" + this.userAccountInfo.ID).push( {
+        this.db.object("/usersOnline/" + this.userAccountInfo.ID).update(  {
           name : res.user.displayName ,
           email : res.user.email ,
           ID : this.userAccountInfo.ID

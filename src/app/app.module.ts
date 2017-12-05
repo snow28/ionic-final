@@ -20,6 +20,7 @@ import { AddNewsPage } from '../pages/add-news/add-news';
 
 import { UsersOnlineComponent } from '../components/users-online/users-online';
 import { MainHomeComponent } from '../components/main-home/main-home';
+import {ChatRoomsComponent} from '../components/chat-rooms/chat-rooms';
 
 
 var config = {
@@ -39,6 +40,7 @@ var config = {
     MainPage,
     UsersOnlineComponent,
     MainHomeComponent,
+    ChatRoomsComponent,
     AddNewsPage
   ],
   imports: [

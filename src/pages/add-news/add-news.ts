@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams , Events } from 'ionic-angular';
 import { AngularFireDatabase } from 'angularfire2/database';
 import {AngularFireAuth} from 'angularfire2/auth'
 import firebase from 'firebase';
@@ -19,6 +19,7 @@ import firebase from 'firebase';
 export class AddNewsPage {
 
   notePackage = {
+    noteID : 0,
     topic : '',
     note : '',
     photoUrl : '',
@@ -33,8 +34,12 @@ export class AddNewsPage {
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               private fire : AngularFireAuth ,
-              private db : AngularFireDatabase
+              private db : AngularFireDatabase,
+              public events: Events
   ) {
+    this.db.list('/notes').valueChanges().subscribe(data =>{
+      this.notePackage.noteID = data.length;
+    });
   }
 
   ionViewDidLoad() {
@@ -46,8 +51,10 @@ export class AddNewsPage {
   }
   // and note and return to the home page
   addAndQuite(){
+
+    this.events.publish('addNote');
     if(this.notePackage.topic != '' && this.notePackage.note != '') {
-      this.db.list('/notes').push({
+      this.db.object('/notes/'+ this.notePackage.noteID).update({
         topic : this.notePackage.topic,
         note : this.notePackage.note,
         photoUrl : this.notePackage.photoUrl,

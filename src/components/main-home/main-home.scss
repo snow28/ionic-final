@@ -30,7 +30,17 @@ main-home {
     margin-top: 1em;
     padding-bottom: 0.3em;
     float:left;
-    width: 33.3%;
+    width: 40%;
+  }
+  .note__footer_time{
+    width : 20%;
+    float : left;
+    font-size : 10px;
+    height: 22px;
+    line-height: 22px;
+    margin-top: 1em;
+    position: relative;
+    left : -10px;
   }
 
 }
