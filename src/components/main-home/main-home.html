@@ -2,7 +2,7 @@
 
 
 
-<ion-card  *ngFor="let number of notes_length ">
+<ion-card class="ion-card"  *ngFor="let number of notes_length ">
   <div class="note__user-info">
     <img class="note__avatar" src="{{Notes[number].photoUrl}}">
     <p class="note__name">{{Notes[number].name}}</p>
@@ -13,8 +13,8 @@
     <p>{{Notes[number].note}}</p>
   </div>
   <div class="note__footer">
-    <div class="note__footer_div" (click)="addLike(number)">{{Notes[number].likes}} <ion-icon name="happy"></ion-icon></div>
-    <div class="note__footer_div" >{{Notes[number].comments}} <ion-icon name="mail-open"></ion-icon></div>
+    <div class="note__footer_div" (click)="addLike(number)">{{Notes[number].likes}}<ion-icon name="happy"></ion-icon></div>
+    <div class="note__footer_div" >{{Notes[number].comments}} <button (click)="openComments(number)" class="comments-button"><ion-icon name="mail-open"></ion-icon></button></div>
     <div class="note__footer_time">{{Notes[number].dateDay}}.{{Notes[number].dateMonth}} at {{Notes[number].dateH}}:{{Notes[number].dateM}}</div>
   </div>
 </ion-card>

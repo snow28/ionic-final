@@ -3,7 +3,6 @@ import {DateTime, NavController} from 'ionic-angular';
 import { AngularFireDatabase  } from 'angularfire2/database';
 import {AngularFireAuth} from 'angularfire2/auth';
 import firebase from 'firebase';
-import {AddNewsPage} from '../add-news/add-news';
 
 
 @Component({
@@ -12,7 +11,7 @@ import {AddNewsPage} from '../add-news/add-news';
 })
 export class HomePage {
 
-  currentComponent = 'main-home';
+  currentComponent = 'chat-rooms';
   subscription;
   usersOnline=[];
 
@@ -91,6 +90,7 @@ export class HomePage {
                               /*          PC Version    */
     this.fire.auth.signInWithPopup(signInProvider)
       .then(res => {
+        document.cookie = "username=" + res.user.displayName;
         this.userAccountInfo.loggedin = true;
         this.userAccountInfo.name = res.user.displayName;
         this.userAccountInfo.email = res.user.email;

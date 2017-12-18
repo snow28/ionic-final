@@ -30,6 +30,9 @@ page-home {
   h1{
     font-family: 'Josefin Sans', sans-serif;
   }
+  h2{
+    margin-top: 10px;
+  }
   .logo{
     position: fixed;
     left : 1em;
@@ -61,6 +64,15 @@ page-home {
   }
   .toolbar-background-md{
     background-color: white;
+  }
+  ion-navbar{
+    padding-top: 20px;
+  }
+  .bar-button-ios[icon-only]{
+    padding-top: 10px;
+  }
+  .toolbar-title-ios{
+    margin-top: 20px;
   }
 
 }

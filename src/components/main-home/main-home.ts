@@ -2,7 +2,7 @@ import { Component , Input , Pipe} from '@angular/core';
 import { NavController , Events  } from 'ionic-angular';
 import {AngularFireDatabase } from "angularfire2/database";
 import { AddNewsPage } from '../../pages/add-news/add-news';
-import {HomePage} from "../../pages/home/home";
+import {CommentsPage} from "../../pages/comments/comments";
 
 @Component({
   selector: 'main-home',
@@ -11,13 +11,15 @@ import {HomePage} from "../../pages/home/home";
 
 
 export class MainHomeComponent {
+  results: any= [];
+
   userInfo =  {
     ID : '',
     email : '',
     name : '',
     profilePicture : ''
   }
-  Notes;
+  Notes ;
   notes_length = [];
   x=0;
   notes_likes={};
@@ -52,30 +54,34 @@ export class MainHomeComponent {
     this.userInfo.ID = input.ID;
     console.log("ID->" + this.userInfo.ID);
   }
-
-  likesFromUser = {};
-  addLike(index){
-    this.db.list('/likes/'+this.userInfo.ID).valueChanges().subscribe(data=>{
-      this.likesFromUser = data;
-      //console.log(data);
+  prepare_data(){
+    return new Promise((resolve, reject) => {
+      this.db.list('/likes/'+this.userInfo.ID).valueChanges().subscribe(data=>{
+        this.results= data;
+        resolve(data);
+      })
     })
-    console.log(this.likesFromUser[index]);
-    if( true) {
-      this.notes_likes[index]++;
-      this.db.object('/notes/' + index).update({likes: this.notes_likes[index]});
-      this.db.object('/likes/' + this.userInfo.ID + '/' + index).update({
-        value: true,
-        email : this.userInfo.email
-      });
+  }
+  likesAdded : any = {};
+
+  addLike(index){
+    if(this.likesAdded[index] != true) {
+      this.likesAdded[index] = true;
+      this.db.object('/notes/' + index).update({likes: this.notes_likes[index] + 1});
+    }else{
+      this.likesAdded[index] = false;
+      this.db.object('/notes/' + index).update({likes: this.notes_likes[index] - 1});
     }
-
-
-
-
   }
 
   pushTo_addnews(){
     this.navCtrl.push(AddNewsPage,this.userInfo);
+  }
+
+  openComments(index){
+    console.log("openComments function works!");
+    this.navCtrl.push(CommentsPage , {index : index , userInfo  : this.userInfo , Notes : this.Notes});
+
   }
 
 }

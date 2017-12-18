@@ -21,6 +21,9 @@ import { AddNewsPage } from '../pages/add-news/add-news';
 import { UsersOnlineComponent } from '../components/users-online/users-online';
 import { MainHomeComponent } from '../components/main-home/main-home';
 import {ChatRoomsComponent} from '../components/chat-rooms/chat-rooms';
+import {CommentsPage} from "../pages/comments/comments";
+import {CreateChatroomPage} from "../pages/create-chatroom/create-chatroom";
+import {ChatPage} from "../pages/chat/chat";
 
 
 var config = {
@@ -41,7 +44,10 @@ var config = {
     UsersOnlineComponent,
     MainHomeComponent,
     ChatRoomsComponent,
-    AddNewsPage
+    AddNewsPage,
+    CommentsPage,
+    CreateChatroomPage,
+    ChatPage
   ],
   imports: [
     BrowserModule,
@@ -55,7 +61,10 @@ var config = {
     MyApp,
     HomePage,
     MainPage,
-    AddNewsPage
+    AddNewsPage,
+    CommentsPage,
+    CreateChatroomPage,
+    ChatPage
   ],
   providers: [
     StatusBar,

@@ -25,8 +25,7 @@ export class UsersOnlineComponent {
       this.usersOnline = data;
       console.log("Users online" + this.usersOnline);
     })
-    console.log('Users-online component works!');
-    this.text = 'Users online component';
+
   }
 
 }

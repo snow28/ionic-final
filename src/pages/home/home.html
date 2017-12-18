@@ -15,8 +15,8 @@
     <button ion-item menuClose>
       Photos
     </button>
-    <button ion-item menuClose (click)="openComponent('users-online')">
-      Users Online
+    <button ion-item menuClose (click)="openComponent('chat-rooms')">
+      Chat Rooms
     </button>
     <button ion-item menuClose >
       Music
@@ -50,6 +50,7 @@
 
     <users-online *ngIf="currentComponent == 'users-online'"></users-online>
     <main-home *ngIf="currentComponent == 'main-home'" [userAccountInfo]="userAccountInfo"></main-home>
+    <chat-rooms *ngIf="currentComponent == 'chat-rooms'" [userAccountInfo]="userAccountInfo"></chat-rooms>
 
 
   </div>

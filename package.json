@@ -29,6 +29,7 @@
     "angularfire2": "^5.0.0-rc.4",
     "cordova-admob-sdk": "^0.12.0",
     "cordova-android": "6.3.0",
+    "cordova-ios": "4.5.4",
     "cordova-plugin-admob-free": "^0.12.1",
     "cordova-plugin-browsertab": "^0.2.0",
     "cordova-plugin-buildinfo": "^2.0.1",

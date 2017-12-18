@@ -1,4 +1,4 @@
-<!-- Generated template for the ChatRoomsComponent component -->
-<div>
-  {{text}}
+<button ion-button full outline class="createRoom" (click)="createRoomRedirect()">Create Chat Room</button>
+<div  *ngFor="let chats of chatsCreated">
+  <button ion-button ion-button round outline (click)="openChat(chats.name)">{{chats.name}}</button>
 </div>

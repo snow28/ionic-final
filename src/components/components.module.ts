@@ -5,10 +5,12 @@ import { ChatRoomsComponent } from './chat-rooms/chat-rooms';
 @NgModule({
 	declarations: [UsersOnlineComponent,
     MainHomeComponent,
+    ChatRoomsComponent,
     ChatRoomsComponent],
 	imports: [],
 	exports: [UsersOnlineComponent,
     MainHomeComponent,
+    ChatRoomsComponent,
     ChatRoomsComponent]
 })
 export class ComponentsModule {}

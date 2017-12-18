@@ -1,11 +1,13 @@
-import { Component } from '@angular/core';
+import { Component , Input } from '@angular/core';
+import { NavController   } from 'ionic-angular';
+import {AngularFireDatabase } from "angularfire2/database";
+import {ChatPage} from "../../pages/chat/chat";
 
-/**
- * Generated class for the ChatRoomsComponent component.
- *
- * See https://angular.io/api/core/Component for more info on Angular
- * Components.
- */
+
+import { CreateChatroomPage } from "../../pages/create-chatroom/create-chatroom";
+
+
+
 @Component({
   selector: 'chat-rooms',
   templateUrl: 'chat-rooms.html'
@@ -13,10 +15,25 @@ import { Component } from '@angular/core';
 export class ChatRoomsComponent {
 
   text: string;
+  chatsCreated;
+  userInfo;
 
-  constructor() {
-    console.log('Hello ChatRoomsComponent Component');
-    this.text = 'Hello World';
+  constructor(public navCtrl: NavController , public db : AngularFireDatabase ) {
+    this.db.list('/chatRooms').valueChanges().subscribe(data => {
+      this.chatsCreated = data;
+    });
+  }
+  //recieving user data from home.ts file
+  @Input()
+  set userAccountInfo(input) {
+    this.userInfo = input;
   }
 
+  openChat(name){
+    this.navCtrl.push(ChatPage, {name : name , userInfo : this.userInfo});
+  }
+
+  createRoomRedirect(){
+    this.navCtrl.push(CreateChatroomPage);
+  }
 }

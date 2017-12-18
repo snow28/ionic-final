@@ -1,0 +1,57 @@
+page-comments {
+
+  div#footer div.elem:first-child{
+    flex-grow : 1;
+  }
+  div#footer{
+    min-height: 40px;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+  }
+  ion-toolbar{
+    margin : 0;
+    padding : 0!important;
+  }
+  .button{
+    padding :0;
+    margin:0;
+    min-width: 45px;
+  }
+
+  #input{
+    height : inherit;
+    margin-left: 10px ;
+    padding-top: 0.05em;
+  }
+  ion-input{
+    line-height: 34px;
+    font-size: 125%;
+  }
+  .text-input-ios{
+    margin:0;
+    padding-top: 7px;
+  }
+  .text-input-md{
+    margin:0;
+  }
+  .button-default-ios{
+    min-height:45px;
+  }
+
+  .button-default-md{
+    min-height:40px;
+  }
+
+  .userName{
+    font-size: 15px;
+    font-weight: 500;
+  }
+
+  .message:after{
+    content:'';
+    display: block;
+    clear : both;
+  }
+
+}
