@@ -1,5 +1,5 @@
 import { Component , ChangeDetectorRef , Injectable } from '@angular/core';
-import {DateTime, NavController} from 'ionic-angular';
+import { NavController} from 'ionic-angular';
 import { AngularFireDatabase  } from 'angularfire2/database';
 import {AngularFireAuth} from 'angularfire2/auth';
 import firebase from 'firebase';
@@ -25,7 +25,7 @@ export class HomePage {
     name : '',
     profilePicture : '',
     email : '',
-    loggedinWith : '',
+    loggedinWith :  '',
     loggedin : false
   }
 

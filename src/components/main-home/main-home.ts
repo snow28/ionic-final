@@ -34,7 +34,6 @@ export class MainHomeComponent {
       this.x=0;
       //creating array with likes equvalient in each cell
       for( this.x ; this.x<data.length;this.x++){
-
         this.notes_likes[this.x] = this.Notes[this.x].likes;
       }
       //creating array to permit user like post 2 times

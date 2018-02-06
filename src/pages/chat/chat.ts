@@ -19,26 +19,12 @@ export class ChatPage {
   message;   // ngModel with input field on the bottom
   Messages; // i will use this variable to store all messages from DB
 
-  //function to recieve one value from cookie
-  getCookie(cname) {
-    var name = cname + "=";
-    var ca = document.cookie.split(';');
-    for(var i = 0; i < ca.length; i++) {
-      var c = ca[i];
-      while (c.charAt(0) == ' ') {
-        c = c.substring(1);
-      }
-      if (c.indexOf(name) == 0) {
-        return c.substring(name.length, c.length);
-      }
-    }
-    return "";
-  }
+
 
   constructor(public navCtrl: NavController, public navParams: NavParams , private db : AngularFireDatabase) {
     this.userInfo = navParams.get('userInfo');
     this.chatName = navParams.get('name');
-    this.userName = this.getCookie('username');
+    this.userName = this.userInfo.name;
     this.db.list('/chats/' + this.chatName).valueChanges().subscribe(data =>{
       this.Messages = data;
     })
