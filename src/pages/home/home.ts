@@ -14,6 +14,7 @@ export class HomePage {
   currentComponent = 'chat-rooms';
   subscription;
   usersOnline=[];
+  tmp:any;
 
   openComponent(name){
     this.currentComponent = name;
@@ -45,10 +46,11 @@ export class HomePage {
   login(authSource) {
 
     this.db.list("/ID").valueChanges().subscribe(data =>{
+        this.tmp = data;
         this.userAccountInfo.ID = data[0];
         console.log("ID data[0] returned from firebase->>>" + data[0]);
         if(this.userAccountInfo.incremented == false) {
-          this.db.object("/ID").update({0 : parseInt(data[0]) + 1 });
+          this.db.object("/ID").update({0 : parseInt(this.tmp[0]) + 1 });
           this.userAccountInfo.incremented = true;
         }
       }
